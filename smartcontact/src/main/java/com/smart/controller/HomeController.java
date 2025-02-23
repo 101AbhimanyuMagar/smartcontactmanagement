@@ -1,7 +1,7 @@
 package com.smart.controller;
 
-import org.apache.el.util.MessageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,7 +21,14 @@ import jakarta.validation.Valid;
 public class HomeController {
 	
 	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+
+
+	@Autowired
     private UserRepository userRepository;
+	
+	
 	@GetMapping("/")
 	public String home() {
 		return "home";
@@ -60,6 +67,8 @@ public class HomeController {
 	        
 	        user.setRole("ROLE_USER");
 	        user.setEnable(true);
+	        user.setImageUrl("Personal.jpg");
+	        user.setPassword(passwordEncoder.encode(user.getPassword()));
 	        
 	        // Save user to database
 	        userRepository.save(user);
@@ -77,6 +86,14 @@ public class HomeController {
 	        session.setAttribute("message", new Message("Something went wrong: " + e.getMessage(), "alert-danger"));
 	        return "signup";
 	    }
+	}
+	
+	// custom login
+	@GetMapping("/signin")
+	public String customLogin(Model model)
+	{
+		model.addAttribute("title", "Login Page");
+		return "login";
 	}
 
 }

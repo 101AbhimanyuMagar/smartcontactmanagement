@@ -11,7 +11,38 @@ body{
 	background-size:cover;
 	color: white;
 }
-.my-card{
-	padding: 20px;
-	background: #FFFFFF;
+ /* Card container style */
+    .my-card {
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    /* Login container spacing */
+    #login {
+      margin-top: 70px;
+    }
+    /* Login box adjustments */
+    #login-box {
+      max-width: 600px;
+      margin: auto;
+      border: none;
+    }
+    /* Form styling */
+    #login-form {
+      padding: 20px;
+    }
+    h3.text-info {
+      margin-bottom: 20px;
+    }
+    .btn-info {
+      background-color: #17a2b8;
+      border: none;
+    }
+    #register-link {
+      margin-top: 15px;
+    }
+    .form-group {
+  margin-bottom: 20px;
 }
+    
